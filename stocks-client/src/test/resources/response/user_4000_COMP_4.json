@@ -1,0 +1,13 @@
+{
+  "id": 1,
+  "name": "John",
+  "balance": 0.00,
+  "totalBalance": 4000.00,
+  "ownedStocks": [
+    {
+      "symbol": "COMP",
+      "priceUsd": 1000.00,
+      "amount": 4
+    }
+  ]
+}

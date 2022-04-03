@@ -1,0 +1,59 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: dolzhanskii
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            - tableExists:
+                tableName: companies
+            - tableExists:
+                tableName: stocks
+      changes:
+        - createTable:
+            tableName: companies
+            columns:
+              - column:
+                  name: company_id
+                  type: bigserial
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: companies_pk
+              - column:
+                  name: name
+                  type: varchar
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: stocks
+            columns:
+              - column:
+                  name: stock_id
+                  type: bigserial
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: stocks_pk
+              - column:
+                  name: symbol
+                  type: varchar
+                  constraints:
+                    unique: true
+                    uniqueConstraintName: stocks_k1
+                    nullable: false
+              - column:
+                  name: price_usd
+                  type: decimal(100,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: amount
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: company_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: stocks_fk1
+                    references: companies(company_id)

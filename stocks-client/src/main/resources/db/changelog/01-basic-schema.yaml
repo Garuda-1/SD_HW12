@@ -1,0 +1,57 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: dolzhanskii
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            - tableExists:
+                tableName: users
+            - tableExists:
+                tableName: owned_stocks
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: user_id
+                  type: bigserial
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: users_pk
+              - column:
+                  name: name
+                  type: varchar
+                  constraints:
+                    nullable: false
+              - column:
+                  name: balance_usd
+                  type: decimal(100,2)
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: stocks_batches
+            columns:
+              - column:
+                  name: stock_batch_id
+                  type: bigserial
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: stocks_pk
+              - column:
+                  name: symbol
+                  type: varchar
+                  constraints:
+                    nullable: false
+              - column:
+                  name: amount
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: owned_stocks_fk1
+                    references: users(user_id)

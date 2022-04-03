@@ -1,0 +1,23 @@
+server:
+  port: ${PORT}
+
+spring:
+  datasource:
+    url: ${DATASOURCE_URL}
+    username: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
+  main:
+    allow-bean-definition-overriding: true
+
+  jpa:
+    database: postgresql
+    hibernate:
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+
+  liquibase:
+    change-log: db/changelog/main-changelog.yaml
+
+stocks-server:
+  host: ${STOCKS_SERVER_HOST}
+  port: ${STOCKS_SERVER_PORT}

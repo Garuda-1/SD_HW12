@@ -1,0 +1,7 @@
+{
+  "id": 1,
+  "name": "John",
+  "balance": 1000.00,
+  "totalBalance": 1000.00,
+  "ownedStocks": []
+}
